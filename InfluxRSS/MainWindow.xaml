@@ -1,0 +1,22 @@
+﻿<Window x:Name="MainWin" x:Class="InfluxRSS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InfluxRSS"
+        mc:Ignorable="d"
+        Title="Influx RSS Reader" Width="480" ResizeMode="NoResize" Height="360" Loaded="MainWin_Loaded">
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Bottom" Height="40" Orientation="Horizontal" HorizontalAlignment="Center">
+			<Button x:Name="ButtonRefresh" Content="[tools.refresh]"  Height="38" Width="92"/>
+			<Button x:Name="ButtonSettings" Content="[tools.settings]"  Height="38" Width="92"/>
+			<Button x:Name="ButtonAbout" Content="[tools.about]"  Height="38" Width="92" />
+			<Button x:Name="ButtonDonate" Content="[tools.donate]"  Height="38" Width="92"/>
+			<Button x:Name="ButtonExit" Content="[tools.exit]"  Height="38" Width="92" Click="ButtonExit_Click" />
+		</StackPanel>
+		<ScrollViewer Width="464" DockPanel.Dock="Right">
+			<StackPanel x:Name="FeedItemPanel" VerticalAlignment="Top"/>
+		</ScrollViewer>
+	</DockPanel>
+
+</Window>

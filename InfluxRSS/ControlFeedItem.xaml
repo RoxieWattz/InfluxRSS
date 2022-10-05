@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="InfluxRSS.ControlFeedItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InfluxRSS"
+             mc:Ignorable="d" 
+             d:DesignHeight="96" d:DesignWidth="447">
+	<Grid MinHeight="96">
+		<Label x:Name="FeedTitle" Content="[title]" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Blue" FontSize="16" Padding="1,1,1,1" Margin="5,5,0,0"/>
+		<Label x:Name="FeedMetadata" Content="[datetime] | [item.by] [author] | [item.source] [source]" HorizontalAlignment="Left" Margin="5,27,0,0" VerticalAlignment="Top" FontSize="11" Padding="1,1,1,1"/>
+		<TextBlock x:Name="FeedDescription" HorizontalAlignment="Left" Margin="5,48,0,0" TextWrapping="Wrap" Text="[item.desc] [description]" VerticalAlignment="Top" FontSize="9" MaxWidth="437"/>
+
+	</Grid>
+</UserControl>
