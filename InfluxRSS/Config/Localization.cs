@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace InfluxRSS.Config
 {
@@ -11,6 +12,7 @@ namespace InfluxRSS.Config
 	{
 		public string ID;
 		public string? Name;
+		public string? Author;
 		private Dictionary<string, string> Replacements;
 
 		// Construct Localization from file
@@ -33,6 +35,12 @@ namespace InfluxRSS.Config
 			// Replace name with proper string if null
 			Name ??= "Unknown";
 
+			// Get author from new dictionary
+			Name = Replacements.GetValueOrDefault("dictionary.author");
+			
+			// Replace author with proper string if null
+			Name ??= "Unknown";
+
 		}
 
 		// Construct localization from already existing Dictionary
@@ -40,6 +48,8 @@ namespace InfluxRSS.Config
 		{
 			ID = name;
 			Replacements = replacements;
+			Name = Replacements.GetValueOrDefault("dictionary.name");
+			Author = Replacements.GetValueOrDefault("dictionary.author");
 		}
 
 		// Get the local string here

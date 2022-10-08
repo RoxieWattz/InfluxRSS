@@ -10,9 +10,10 @@ namespace InfluxRSS.Config
 {
 	public class LocalizationManager
 	{
-		// The default dictionary, which cannot be overridden.
-		// TODO: Add dictionary.title as a key for better UX
+		
 		private static Dictionary<string, string> EnglishUS { get; } = new() {
+			{ "dictionary.name", "English (US)" },
+			{ "dictionary.author", "Roxie Wattz" },
 			{ "tools.refresh", "Refresh" },
 			{ "tools.settings","Settings" },
 			{ "tools.about", "About" },
@@ -28,7 +29,7 @@ namespace InfluxRSS.Config
 		private List<Localization> Localizations;
 		
 		// The localization that is currently being used by the program
-		public Localization ActiveLocalization;
+		public Localization? ActiveLocalization;
 
 		public LocalizationManager(ConfigManager c) {
 			
@@ -61,12 +62,12 @@ namespace InfluxRSS.Config
 					
 			}
 
-			// Gay computer magic (idk what else to put here, it's midnight and I'm tired as hell
-			try {
-				ActiveLocalization = Localizations.FirstOrDefault(l => l.name == c.Language);
-			} catch (ArgumentNullException) {
-				ActiveLocalization = Localizations[0];
-			}
+			// Try to set the active localization here based on the configuration
+			ActiveLocalization = Localizations.FirstOrDefault(l => l.ID == c.Language);
+
+			// If it ends up being null (caused by the user putting a bad string in
+			// the config.txt file), just set it to EN-US so no exceptions are raised.
+			ActiveLocalization ??= Localizations[0];
 			
 
 			
