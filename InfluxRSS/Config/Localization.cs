@@ -6,10 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
 
-namespace InfluxRSS.Config
-{
-	public class Localization
-	{
+namespace InfluxRSS.Config {
+	public class Localization {
 		public string ID;
 		public string? Name;
 		public string? Author;
@@ -18,13 +16,13 @@ namespace InfluxRSS.Config
 		// Construct Localization from file
 		public Localization(string name, string file) {
 			ID = name;
-			
+
 			string[] lines = File.ReadAllLines(file);
 
 			Replacements = new Dictionary<string, string>();
 
 			// Parse language file
-			foreach(string l in lines) {
+			foreach (string l in lines) {
 				string[] parts = l.Split(':');
 				Replacements.Add(parts[0].Trim(), parts[1].Trim());
 			}
@@ -37,15 +35,13 @@ namespace InfluxRSS.Config
 
 			// Get author from new dictionary
 			Name = Replacements.GetValueOrDefault("dictionary.author");
-			
+
 			// Replace author with proper string if null
 			Name ??= "Unknown";
-
 		}
 
 		// Construct localization from already existing Dictionary
-		public Localization(string name, Dictionary<string, string> replacements)
-		{
+		public Localization(string name, Dictionary<string, string> replacements) {
 			ID = name;
 			Replacements = replacements;
 			Name = Replacements.GetValueOrDefault("dictionary.name");
@@ -53,14 +49,10 @@ namespace InfluxRSS.Config
 		}
 
 		// Get the local string here
-		public string GetTextFromKey(string key)
-		{
-			if (Replacements.TryGetValue(key, out string? result))
-			{
+		public string GetTextFromKey(string key) {
+			if (Replacements.TryGetValue(key, out string? result)) {
 				return result;
-			}
-			else return key;
+			} else return key;
 		}
-
 	}
 }

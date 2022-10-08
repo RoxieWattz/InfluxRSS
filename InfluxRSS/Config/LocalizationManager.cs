@@ -4,13 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Environment;
 
-namespace InfluxRSS.Config
-{
-	public class LocalizationManager
-	{
-		
+namespace InfluxRSS.Config {
+	public class LocalizationManager {
 		private static Dictionary<string, string> EnglishUS { get; } = new() {
 			{ "dictionary.name", "English (US)" },
 			{ "dictionary.author", "Roxie Wattz" },
@@ -32,7 +28,6 @@ namespace InfluxRSS.Config
 		public Localization? ActiveLocalization;
 
 		public LocalizationManager(ConfigManager c) {
-			
 			// set stuff here idfk i'm getting pissed
 			string langRoot = "localization";
 
@@ -59,7 +54,6 @@ namespace InfluxRSS.Config
 				if(name!="en-us") {
 					Localizations.Add(new(name, config));
 				}
-					
 			}
 
 			// Try to set the active localization here based on the configuration
@@ -68,15 +62,6 @@ namespace InfluxRSS.Config
 			// If it ends up being null (caused by the user putting a bad string in
 			// the config.txt file), just set it to EN-US so no exceptions are raised.
 			ActiveLocalization ??= Localizations[0];
-			
-
-			
-
-
 		}
-
-		
-
-
 	}
 }

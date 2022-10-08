@@ -16,18 +16,15 @@ using System.Windows.Shapes;
 
 using InfluxRSS.Config;
 
-namespace InfluxRSS
-{
+namespace InfluxRSS {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
-	{
+	public partial class MainWindow : Window {
 		public ConfigManager cm;
 		public LocalizationManager lm;
 
-		public MainWindow()
-		{
+		public MainWindow() {
 			// Load in Config and active localization files
 			cm = new ConfigManager();
 			lm = new LocalizationManager(cm);
@@ -39,23 +36,18 @@ namespace InfluxRSS
 			ButtonAbout.Content = lm.ActiveLocalization.GetTextFromKey("tools.about");
 			ButtonDonate.Content = lm.ActiveLocalization.GetTextFromKey("tools.donate");
 			ButtonExit.Content = lm.ActiveLocalization.GetTextFromKey("tools.exit");
-
 		}
 
 		// Exits the program, what else
-		private void ButtonExit_Click(object sender, RoutedEventArgs e)
-		{
+		private void ButtonExit_Click(object sender, RoutedEventArgs e) {
 			Close();
 		}
 
-		private void MainWin_Loaded(object sender, RoutedEventArgs e)
-		{
-			
+		private void MainWin_Loaded(object sender, RoutedEventArgs e) {
 			// Check the feed configuration and return an error if no feeds were found
 			if (cm.FeedURIs.Count == 0) {
 				FeedItemPanel.Children.Clear();
-				FeedItemPanel.Children.Add(new TextBlock
-				{
+				FeedItemPanel.Children.Add(new TextBlock {
 					MaxWidth = 447,
 					TextWrapping = TextWrapping.Wrap,
 					Foreground = new SolidColorBrush(Colors.Red),
@@ -63,9 +55,7 @@ namespace InfluxRSS
 					Text = lm.ActiveLocalization.GetTextFromKey("error.nofeeds")
 				});
 			}
-
 			// TODO: Start scanning the feeds at this point
-
 		}
 	}
 }
