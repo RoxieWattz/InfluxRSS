@@ -1,4 +1,5 @@
 ﻿using InfluxRSS.Config;
+using InfluxRSS.Feed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,24 @@ using System.Windows.Shapes;
 
 namespace InfluxRSS
 {
-    /// <summary>
-    /// Interaction logic for ControlFeedItem.xaml
-    /// </summary>
-    public partial class ControlFeedItem : UserControl
-    {
-        public ControlFeedItem(LocalizationManager l)
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for ControlFeedItem.xaml
+	/// </summary>
+	public partial class ControlFeedItem : UserControl
+	{
+
+		private readonly string? URL;
+		public ControlFeedItem(LocalizationManager l, FeedItem f)
+		{
+			InitializeComponent();
+
+			URL = f.URL;
+
+			FeedTitle.Content = f.Title;
+			// overly long string for metadata stuff :D
+			FeedMetadata.Content = $"{f.Date} | {l.ActiveLocalization.GetTextFromKey("item.by")} " +
+				$"{f.Author} | {l.ActiveLocalization.GetTextFromKey("item.source")} + {f.Source}";
+			FeedDescription.Text = $"{l.ActiveLocalization.GetTextFromKey("item.source")} {f.Description}";
+		}
+	}
 }
