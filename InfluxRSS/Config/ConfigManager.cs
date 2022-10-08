@@ -18,8 +18,8 @@ namespace InfluxRSS.Config
 
 			// Config files
 			string configRoot = GetFolderPath(SpecialFolder.LocalApplicationData) + "/InfluxRSS/";
-			string configPath = GetFolderPath(SpecialFolder.LocalApplicationData) + "/InfluxRSS/config.txt";
-			string feedPath = GetFolderPath(SpecialFolder.LocalApplicationData) + "/InfluxRSS/feeds.txt";
+			string configPath = configRoot + "config.txt";
+			string feedPath = configRoot + "feeds.txt";
 			
 
 			// Create root directory if it doesn't exist
@@ -31,6 +31,7 @@ namespace InfluxRSS.Config
 			MaxResults = 20;
 			Language = "en-us";
 
+			// TODO: Make the config file more robust, I guess...
 			if (!File.Exists(configPath))
 			{
 				File.WriteAllText(configPath, "MaxResults:20\nLanguage:en-us");
@@ -38,6 +39,7 @@ namespace InfluxRSS.Config
 			}
 			else
 			{
+				// Parses the config file and sets all the proper settings
 				string[] configLines = File.ReadAllLines(configPath);
 
 				foreach (string line in configLines)

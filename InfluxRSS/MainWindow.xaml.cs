@@ -28,11 +28,12 @@ namespace InfluxRSS
 
 		public MainWindow()
 		{
+			// Load in Config and active localization files
 			cm = new ConfigManager();
 			lm = new LocalizationManager(cm);
 			InitializeComponent();
 
-			// Populate text components
+			// Populate text components based on active language setting
 			ButtonRefresh.Content = lm.ActiveLocalization.GetTextFromKey("tools.refresh");
 			ButtonSettings.Content = lm.ActiveLocalization.GetTextFromKey("tools.settings");
 			ButtonAbout.Content = lm.ActiveLocalization.GetTextFromKey("tools.about");
@@ -41,6 +42,7 @@ namespace InfluxRSS
 
 		}
 
+		// Exits the program, what else
 		private void ButtonExit_Click(object sender, RoutedEventArgs e)
 		{
 			Close();
@@ -48,6 +50,8 @@ namespace InfluxRSS
 
 		private void MainWin_Loaded(object sender, RoutedEventArgs e)
 		{
+			
+			// Check the feed configuration and return an error if no feeds were found
 			if (cm.FeedURIs.Count == 0) {
 				FeedItemPanel.Children.Clear();
 				FeedItemPanel.Children.Add(new TextBlock
@@ -59,6 +63,9 @@ namespace InfluxRSS
 					Text = lm.ActiveLocalization.GetTextFromKey("error.nofeeds")
 				});
 			}
+
+			// TODO: Start scanning the feeds at this point
+
 		}
 	}
 }

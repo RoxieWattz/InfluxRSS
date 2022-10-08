@@ -22,10 +22,13 @@ namespace InfluxRSS
 	/// </summary>
 	public partial class ControlFeedItem : UserControl
 	{
-
+		// TODO: Merge FeedItem class with this class so it's not a mess
+		// This is here for click events so the full article can open in a web browser
 		private readonly string? URL;
 		public ControlFeedItem(LocalizationManager l, FeedItem f)
 		{
+
+			
 			InitializeComponent();
 
 			URL = f.URL;

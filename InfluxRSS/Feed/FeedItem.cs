@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace InfluxRSS.Feed
 {
+
+	// TODO: GET RID OF THIS STINKY CLASS
 	public class FeedItem
 	{
 		public string? Title { get; set; }

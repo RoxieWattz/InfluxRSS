@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// TODO: Flood this file with comments like I did with the other files.
+// Tomorrow tho, I am the tired sleepy ~zzzz~
+
 namespace InfluxRSS.Config
 {
 	public class Localization
