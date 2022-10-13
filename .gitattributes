@@ -64,3 +64,4 @@
 
 # Add XAML to the language listing
 *.xaml linguist-detectable
+*.xaml linguist-language=XAML
